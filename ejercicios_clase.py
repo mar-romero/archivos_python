@@ -36,7 +36,10 @@ def ej1():
     de líneas encontradas.
     '''
 
-
+    with open('notas.txt') as no:
+        for line in no:
+            cantidad_lineas += 1
+        print('cantidad de lineas en el texto',cantidad_lineas)
 def ej2():
     # Ejercicios con archivos txt
     cantidad_lineas = 0
@@ -59,11 +62,22 @@ def ej2():
     # fo = open(.......)
 
     # Recuerde cerrar los archivos al final ;)
+    fi = open('notas.txt' ,'r')
+    fo = open ('archivos.txt','w')
+    for line in fi:
+        cantidad_lineas += 1
+        lines = [line]
+        fo.writelines(lines)
+        print('cantidad de lineas en el texto',cantidad_lineas)
+    fo.flush()
+    fo.close()
+    fi.close()
+    # como puedo hacer para que se grabe las lineas y se ve en el archivo uno por uno
 
 
 def ej3():
     # Ejercicios con archivos CSV
-    archivo = 'propiedades.csv'
+    #archivo = 'propiedades.csv'
     '''
     Realice un programa que abra el archivo CSV "propiedades.csv"
     en modo lectura. Recorrar dicho archivo y contar
@@ -71,8 +85,20 @@ def ej3():
     de departamentos de 3 ambientes disponibles.
     Al finalizar el proceso, imprima en pantalla los resultados.
     '''
-
-
+    lista_aleatoria =()
+    ambiente_3=0
+    ambiente_2=0
+    with open('propiedades.csv') as fo:
+        data = list(csv.DictReader(fo))
+    for i in range(len(data)):
+        amb = data[i]
+        ambiente = float(amb.get('ambientes'))
+        if ambiente == 3:
+                ambiente_3 += 1
+        if ambiente == 2:
+                ambiente_2 += 1
+    print('Cantidad de departamentos de 3 ambientes:',ambiente_3)
+    print('Cantidad de departamentos de 2 ambientes:',ambiente_2)
 def ej4():
     # Ejercicios con diccionarios
     inventario = {'manzanas': 6}
@@ -144,8 +170,8 @@ def ej5():
 
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
-    ej1()
+    #ej1()
     #ej2()
     #ej3()
-    #ej4()
+    ej4()
     #ej5()
