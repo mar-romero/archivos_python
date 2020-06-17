@@ -189,23 +189,22 @@ def ej5():
     import csv
     Stock = {'manzana': 6}
     inventario = {}
+    fvcvs = open ('frutas.csv','r+',newline="")
+    header = ['fruta o verdura','cantidad']
+    writer = csv.DictWriter(fvcvs,fieldnames=header)
+    writer.writeheader()
     while True:
         fv = str(input('Ingrese fruta o verdura, fin para terminar proceso: '))
         if fv == 'fin' or fv == 'FIN':
             break
         can = int(input('Ingrese cantidad: '))
         inventario[fv]=can
+        writer.writerow({'fruta o verdura': fv, 'cantidad': can})
     Stock.update(inventario)
     print ('La lista seria:')
     for key in Stock:
         print (key,": ",Stock[key],sep='')
-    fvcvs = open ('frutas.csv','w',newline="")
-    header =['frutas o verduras','cantidad']
-    writer = csv.DictWriter(fvcvs,fieldnames=header)
-    writer.writeheader()
-    for frut in Stock:
-        writer.writerow(frut)
-    fvcsv.close()
+    fvcvs.close()
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
     #ej1()
