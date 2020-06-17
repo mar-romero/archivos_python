@@ -101,7 +101,7 @@ def ej3():
     print('Cantidad de departamentos de 2 ambientes:',ambiente_2)
 def ej4():
     # Ejercicios con diccionarios
-    inventario = {'manzanas': 6}
+    
 
     '''
     Realice un programa que pida por consola
@@ -127,11 +127,31 @@ def ej4():
     # 1) Bucle 1
     # Generar y completar el diccionario con las frutas y cantidades
     # ingresadas por consola hasta ingresar la palabra "FIN"
-
+    Stock = {'manzana': 6}
+    inventario = {}
+    while True:
+        fv = str(input('Ingrese fruta o verdura: '))
+        if fv == 'fin' or fv == 'FIN':
+            break
+        can = int(input('Ingrese cantidad: '))
+        inventario[fv]=can
+    Stock.update(inventario)
+    print ('La lista seria:')
+    for key in Stock:
+        print (key,": ",Stock[key],sep='')
     # 2) Bucle 2
     # Ingresar por consola la fruta que desea conocer en stock
     # Finalizar cuando la fruta ingresada sea igual a "FIN"
-
+    while True: 
+        fru = str(input('Indique la fruta o verdura que le interesa: '))
+        if fru == 'fin' or fru == 'FIN':
+            print('Se termino el programa')
+            break        
+        try:
+            print(stock[fru])
+        except:
+            print('No se ha encontrado la verdura o fruta', fru)
+        print(Stock.get(fru)) 
 
 def ej5():
     # Ejercicios con archivos CSV
@@ -165,13 +185,31 @@ def ej5():
 
     # Bucle....
 
-    # writer.writerow({'Fruta Verdura': ....., 'Cantidad': ....})
-
-
+    # writer.writerow({'Fruta Verdura': ....., 'Cantidad': ....})Stock = {'manzana': 6}
+    import csv
+    Stock = {'manzana': 6}
+    inventario = {}
+    while True:
+        fv = str(input('Ingrese fruta o verdura, fin para terminar proceso: '))
+        if fv == 'fin' or fv == 'FIN':
+            break
+        can = int(input('Ingrese cantidad: '))
+        inventario[fv]=can
+    Stock.update(inventario)
+    print ('La lista seria:')
+    for key in Stock:
+        print (key,": ",Stock[key],sep='')
+    fvcvs = open ('frutas.csv','w',newline="")
+    header =['frutas o verduras','cantidad']
+    writer = csv.DictWriter(fvcvs,fieldnames=header)
+    writer.writeheader()
+    for frut in Stock:
+        writer.writerow(frut)
+    fvcsv.close()
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
     #ej1()
     #ej2()
     #ej3()
-    ej4()
-    #ej5()
+    #ej4()
+    ej5()
