@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 '''
 Archivos [Python]
 Ejercicios de práctica
@@ -19,7 +18,7 @@ __version__ = "1.1"
 def ej1():
     print("Cuenta caracteres")
     cantidad_letras = 0
-
+    cantidad_letra = 0
     '''
     Realizar un prorgrama que cuenta la cantidad de caracteres
     (todo tipo de caracter, los espacios cuentan) de un archivo.
@@ -28,6 +27,11 @@ def ej1():
     Debe realizar la sumatoria total de la cantidad de caracteres de todas
     las líneas para obtener el total del archivo e imprimirlo en pantalla
     '''
+    with open('texto.txt') as fi:
+        for line in fi:
+            cantidad_letras=len(line)
+            cantidad_letra += cantidad_letras
+        print('la cantiad de letras en el texto es: ',cantidad_letra)
 
 
 def ej2():
@@ -122,7 +126,7 @@ def ej4():
 
 if __name__ == '__main__':
     print("Ejercicios de práctica")
-    #ej1()
+    ej1()
     #ej2()
     #ej3()
     #ej4()
