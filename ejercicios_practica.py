@@ -18,7 +18,7 @@ __version__ = "1.1"
 def ej1():
     print("Cuenta caracteres")
     cantidad_letras = 0
-    cantidad_letra = 0
+
     '''
     Realizar un prorgrama que cuenta la cantidad de caracteres
     (todo tipo de caracter, los espacios cuentan) de un archivo.
@@ -27,16 +27,15 @@ def ej1():
     Debe realizar la sumatoria total de la cantidad de caracteres de todas
     las líneas para obtener el total del archivo e imprimirlo en pantalla
     '''
-    with open('texto.txt') as fi:
+    with open('texto.txt',"r") as fi:
         for line in fi:
-            cantidad_letras=len(line)
-            cantidad_letra += cantidad_letras
-        print('la cantiad de letras en el texto es: ',cantidad_letra)
-
+            cantidad_letras+=len(line)
+        print('La cantiad de letras en el texto es: ',cantidad_letras)
 
 def ej2():
     print("Transcribir!")
     cantidad_letras = 0
+    cantidad_letra = 0
     '''
     Deberá abrir un archivo txt para escritura (un archivo nuevo)
     Luego mediante un bucle deberá pedir por consola que
@@ -53,7 +52,22 @@ def ej2():
     NOTA: Recuerde agregar el salto de línea "\n" a cada entrada
     de texto de la consola antes de copiar la archivo.
     '''
-
+    no = open('mer.txt', "w")
+    while True:
+        print('Ingrese texto que desee guardar si quiere terminar no ingrese nada y aprete enter')
+        tx=str(input('Ingrese el texto que desee guardar:'))
+        if tx == "":
+            break
+        no.write(tx + '\n')
+        no.flush()
+        cantidad_letras=(len(tx))
+        print('Cantidad de letras ingresadas:', cantidad_letras)
+    no.close()
+    with open('mer.txt',"r") as fi:
+        for line in fi:
+            cantidad_letra+=len(line)
+    print('La cantiad de letras en el texto es: ',cantidad_letra)
+    
 
 def ej3():
     print("Escrutinio de los alquileres de Capital Federal")
@@ -72,8 +86,18 @@ def ej3():
     4) Obtener el mínimo valor de alquiler en "pesos"
     de la cantidad de ambientes deseados.
     '''
-
-
+    import csv  
+    cant_am=0
+    with open('propiedades.csv') as fo:
+        data = list(csv.DictReader(fo))
+        am = int(input('De cuantos ambientes quiere el departamento: '))
+    for i in range(len(data)):
+        amb = data[i]
+        ambiente = float(amb.get('ambientes'))
+        if ambiente == am :   
+            if data[i].get('moneda') == 'ARS':
+                cant_am += 1
+    print(cant_am)
 def ej4():
     print("Ahora sí! buena suerte :)")
 
@@ -126,7 +150,7 @@ def ej4():
 
 if __name__ == '__main__':
     print("Ejercicios de práctica")
-    ej1()
+    #ej1()
     #ej2()
-    #ej3()
+    ej3()
     #ej4()
