@@ -145,8 +145,6 @@ def read_csv_vieja_escuela():
             count += 1
             if count >= 5:
                 break
-
-
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
     diccionario()

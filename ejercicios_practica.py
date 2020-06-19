@@ -108,9 +108,9 @@ def ej3():
                 try:
                     promedio = ars_1 / cant_am  
                     print ('La cantidad de departamentos de {} ambientes en ARS son: {}'.format(am,cant_am))
-                    print ('El promedio de los departamentos de {} ambientes en ARS es: $%.2f'.format(am) %(promedio))
-                    print('El precio mas alto de de los departamentos de', am ,'es: $',max(min_max),sep="") 
-                    print('El precio mas bajo es de los departamentos de', am ,'es: $',min(min_max),sep="")         
+                    print ('El promedio de los departamentos de {} ambientes en ARS es: $ %.2f'.format(am) %(promedio))
+                    print('El precio mas alto de de los departamentos de',am,'es: $',max(min_max)) 
+                    print('El precio mas bajo es de los departamentos de',am,'es: $',min(min_max))         
                     break
                 except:
                     print('No hay departamentos con los ambientes requeridos')
