@@ -90,6 +90,7 @@ def ej3():
     import sys
     cant_am=0
     ars_1 = 0
+    min_max = []
     with open('propiedades.csv') as fo:
         data = list(csv.DictReader(fo))
         while True:
@@ -100,15 +101,16 @@ def ej3():
                     ambiente = int(amb.get('ambientes'))
                     if ambiente == am :   
                         if data[i].get('moneda') == 'ARS':
-                            cant_am += 1  
-                            ars = float(amb.get('precio')) 
-                            ars_1 += ars
-                            ars_max=max(int(amb.get('precio')))                  
+                            ars = float(amb.get('precio'))
+                            min_max.append(ars)
+                            cant_am += 1    
+                            ars_1 += ars                        
                 try:
-                    promedio = ars_1 / cant_am              
-                    print('La cantidad de departamentos de {} ambientes en ARS son: {}'.format(am,cant_am))
-                    print ('El promedio de los departamentos de {} ambientes en ARS es:$ %.2f'.format(am) %(promedio))
-                    print(ars_max)
+                    promedio = ars_1 / cant_am  
+                    print ('La cantidad de departamentos de {} ambientes en ARS son: {}'.format(am,cant_am))
+                    print ('El promedio de los departamentos de {} ambientes en ARS es: $%.2f'.format(am) %(promedio))
+                    print('El precio mas alto de de los departamentos de', am ,'es: $',max(min_max),sep="") 
+                    print('El precio mas bajo es de los departamentos de', am ,'es: $',min(min_max),sep="")         
                     break
                 except:
                     print('No hay departamentos con los ambientes requeridos')
