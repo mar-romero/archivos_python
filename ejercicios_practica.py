@@ -87,17 +87,36 @@ def ej3():
     de la cantidad de ambientes deseados.
     '''
     import csv  
+    import sys
     cant_am=0
+    ars_1 = 0
     with open('propiedades.csv') as fo:
         data = list(csv.DictReader(fo))
-        am = int(input('De cuantos ambientes quiere el departamento: '))
-    for i in range(len(data)):
-        amb = data[i]
-        ambiente = float(amb.get('ambientes'))
-        if ambiente == am :   
-            if data[i].get('moneda') == 'ARS':
-                cant_am += 1
-    print(cant_am)
+        while True:
+            try:
+                am  = int(input('De cuantos ambientes quiere el departamento: '))
+                for i in range(len(data)):
+                    amb = data[i]
+                    ambiente = int(amb.get('ambientes'))
+                    if ambiente == am :   
+                        if data[i].get('moneda') == 'ARS':
+                            cant_am += 1  
+                            ars = float(amb.get('precio')) 
+                            ars_1 += ars
+                            ars_max=max(int(amb.get('precio')))                  
+                try:
+                    promedio = ars_1 / cant_am              
+                    print('La cantidad de departamentos de {} ambientes en ARS son: {}'.format(am,cant_am))
+                    print ('El promedio de los departamentos de {} ambientes en ARS es:$ %.2f'.format(am) %(promedio))
+                    print(ars_max)
+                    break
+                except:
+                    print('No hay departamentos con los ambientes requeridos')
+                    division = sys.float_info.max
+            except ValueError:
+                print ("ATENCIÓN: Debe ingresar un número de ambientes.")
+
+        
 def ej4():
     print("Ahora sí! buena suerte :)")
 
