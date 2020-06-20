@@ -14,7 +14,6 @@ __author__ = "Inove Coding School"
 __email__ = "alumnos@inove.com.ar"
 __version__ = "1.1"
 
-
 def ej1():
     print("Cuenta caracteres")
     cantidad_letras = 0
@@ -167,11 +166,27 @@ def ej4():
     de la carrera. Sería igual al ej4 la información recolectada y calculada.
 
     '''
-
+    import csv
+    import marcelo as ma
+    max_min =[]
+    with open("iroman.csv") as fo:
+        data = list(csv.DictReader(fo))
+        while True:
+            try: 
+                run = ma.menu
+                for i in range(len(data)):
+                            esta = data[i]
+                            div = str(esta.get('Division'))
+                            if div == run:
+                                run_1 = str(esta.get('Run'))
+                                max_min.append(run_1)
+                print(max(max_min))
+            except ValueError:
+                print('No ingreso una categoria de la lista')
 
 if __name__ == '__main__':
     print("Ejercicios de práctica")
     #ej1()
     #ej2()
-    ej3()
-    #ej4()
+    #ej3()
+    ej4()
