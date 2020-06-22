@@ -1,39 +1,39 @@
-
+def pedirNumeroEntero():
  
-def menu():
-    import os
-	"""
-	Función que limpia la pantalla y muestra nuevamente el menu
-	"""
-	os.system('clear') # NOTA para windows tienes que cambiar clear por cls
-	print ("Ingrese la categoria que quiere analizar")
-	print ("\tMPRO")
-	print ("\tM45-49")
-	print ("\tM25-29")
-    print('\tM18-24')
-	print ("\tsalir")
+    correcto=False
+    num=0
+    while(not correcto):
+        try:
+            num = int(input("Introduce un numero entero: "))
+            correcto=True
+        except ValueError:
+            print('Error, introduce un numero entero')
+     
+    return num
  
+salir = False
+opcion = 0
  
-	# Mostramos el menu
-	menu()
+while not salir:
  
-	# solicituamos una opción al usuario
-	opcionMenu = input("inserta un numero valor >> ")
+    print ("1. Opcion 1")
+    print ("2. Opcion 2")
+    print ("3. Opcion 3")
+    print ("4. Salir")
+     
+    print ("Elige una opcion")
  
-	if opcionMenu == 'MPRO' :
-		print ("")
-		input("Has pulsado la opción 1...\npulsa una tecla para continuar")
-	elif opcionMenu == 'M45-49':
-		print ("")
-		input("Has pulsado la opción 2...\npulsa una tecla para continuar")
-	elif opcionMenu == 'M25-29' :
-		print ("")
-		input("Has pulsado la opción 3...\npulsa una tecla para continuar")
-		elif opcionMenu == 'M18-24' :
-		print ("")
-		input("Has pulsado la opción 4...\npulsa una tecla para continuar")
-		break
-	else:
-		print ("")
-		input("No has pulsado ninguna opción correcta...\npulsa una tecla para continuar")
-return opcion_Menu
+    opcion = pedirNumeroEntero()
+ 
+    if opcion == 1:
+        print ("Opcion 1")
+    elif opcion == 2:
+        print ("Opcion 2")
+    elif opcion == 3:
+        print("Opcion 3")
+    elif opcion == 4:
+        salir = True
+    else:
+        print ("Introduce un numero entre 1 y 3")
+ 
+print ("Fin")
