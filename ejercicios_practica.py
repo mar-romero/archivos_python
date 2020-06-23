@@ -167,22 +167,64 @@ def ej4():
 
     '''
     import csv
-    import marcelo as ma
-    max_min =[]
+    import mar as ma
+    import datetime
+    import time
+    run_1 = 0
+    swim_1 = 0
+    bike_1 = 0
+    swim_total = 0
+    run_total = 0
+    bike_total = 0
+    lista_swim = []
+    lista_bike = []
+    lista_run = []
+    lista_total = ['Swim', 'Bike', 'Run']
     with open("iroman.csv") as fo:
         data = list(csv.DictReader(fo))
-        while True:
-            try: 
-                run = ma.menu
-                for i in range(len(data)):
-                            esta = data[i]
-                            div = str(esta.get('Division'))
-                            if div == run:
-                                run_1 = str(esta.get('Run'))
-                                max_min.append(run_1)
-                print(max(max_min))
-            except ValueError:
-                print('No ingreso una categoria de la lista')
+        run = ma.menu()
+        for i in range(len(data)):
+            if data[i].get('Division') == run:
+                for y in lista_total:
+                    if data[i].get(y) != "":  #quise hacerlo con remove o strip y no pude(eliminar el valor vacio de la lista)
+                        tiempo = data[i].get(y) #lo unico que se me ocurrio es entre al bucle cuando sea diferente a ""
+                        tiempo = tiempo.split(":")# hay alguna solucion con remove o strip?
+                        for u in range(3):
+                            tiempo[u]= int(tiempo[u])
+                        total_tiempo = tiempo[0]*3600 + tiempo[1]*60 + tiempo[2]
+                        if y =='Swim':
+                            lista_swim.append(total_tiempo)
+                            swim_1 += 1
+                            swim_total += total_tiempo
+                        if y == 'Bike':
+                            lista_bike.append(total_tiempo)
+                            bike_1 += 1
+                            bike_total += total_tiempo
+                        if y == 'Run':
+                            run_1 += 1
+                            run_total += total_tiempo
+                            lista_run.append(total_tiempo)
+    swim_max = (max(lista_swim))
+    run_max = (max(lista_run))
+    bike_max = (max(lista_bike))
+    swim_min = (min(lista_swim))
+    run_min = (min(lista_run))
+    bike_min = (min(lista_bike))
+    pro_run = run_total / run_1
+    pro_bike = bike_total / bike_1
+    pro_swim = swim_total / swim_1
+    max_sw= time.strftime('%H:%M:%S', time.gmtime(swim_max))
+    max_run= time.strftime('%H:%M:%S', time.gmtime(run_max))
+    max_bike= time.strftime('%H:%M:%S', time.gmtime(bike_max))
+    min_sw= time.strftime('%H:%M:%S', time.gmtime(swim_min))
+    min_run= time.strftime('%H:%M:%S', time.gmtime(run_min))
+    min_bike= time.strftime('%H:%M:%S', time.gmtime(bike_min))
+    swim_pro= time.strftime('%H:%M:%S', time.gmtime(pro_swim))
+    run_pro= time.strftime('%H:%M:%S', time.gmtime(pro_run))
+    bike_pro= time.strftime('%H:%M:%S', time.gmtime(pro_bike))
+    print("El tiempo mas alto es: ",max_sw,'el tiempo mas bajo es : ',min_sw,'y el promedio es: ', swim_pro,'para la division ',run,'en la categoria SWIM')
+    print("El tiempo mas alto es: ",max_run,'el tiempo mas bajo es : ',min_run,'y el promedio es: ', run_pro,'para la division ',run,'en la categoria RUN')
+    print("El tiempo mas alto es: ",max_bike,'el tiempo mas bajo es : ',min_bike,'y el promedio es: ', bike_pro,'para la division ',run,'en la categoria BIKE')
 
 if __name__ == '__main__':
     print("Ejercicios de práctica")
