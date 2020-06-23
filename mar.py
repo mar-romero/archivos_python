@@ -4,7 +4,8 @@ def menu():
     print('2) M45-49')
     print('3) M25-29')
     print('4) M18-24')
-    
+    #como se podria hacer para qu eliga el nombre o el numero cuando lo ingresa a la consola, solo pude por el numero de opcion
+    #ya que si ponia el nombre no me tomaba esa categoria, como se podria hacer?
     while True: 
         try: 
             cat = int(input('Ingrese la categoria analizar: '))
